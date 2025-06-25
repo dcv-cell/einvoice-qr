@@ -5,81 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>发票信息</title>
     <style>
-        body {
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 0 16px; /* 左右留出边距 */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #fff;
-            color: #333;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Microsoft YaHei', sans-serif;
+            background: #fff;
+            color: #222;
+            box-sizing: border-box;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 16px;
         }
         h1 {
             font-size: 20px;
-            text-align: center;
-            margin: 25px 0;
             font-weight: 600;
+            text-align: center;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            letter-spacing: 0;
+            color: #111;
         }
         .disclaimer {
             text-align: center;
             color: #888;
             font-size: 14px;
+            margin-bottom: 24px;
+            margin-top: 0;
             line-height: 1.5;
-            margin: 20px 0;
         }
         .info-list {
-            border-top: 1px solid #f0f0f0; /* 顶部加一条线 */
-            margin-top: 25px;
+            border-top: 1px solid #ededed;
         }
         .info-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 0;
-            border-bottom: 1px solid #f0f0f0;
+            height: 44px;
             font-size: 16px;
+            border-bottom: 1px solid #ededed;
+        }
+        .info-item:last-child {
+            border-bottom: none;
         }
         .info-label {
-            color: #333; /* 标签颜色加深以匹配截图 */
-        }
-        .info-value {
-            color: #888; /* 数值颜色变浅以匹配截图 */
+            color: #111;
             font-weight: 400;
         }
-         .footer-disclaimer {
-            margin: 30px 0;
-            color: #aaa;
+        .info-value {
+            color: #888;
+            font-weight: 400;
+        }
+        .footer-disclaimer {
+            color: #d2d2d2;
             font-size: 12px;
             text-align: center;
             line-height: 1.6;
+            margin: 0 16px 24px 16px;
         }
     </style>
 </head>
 <body>
-
-    <h1>发票信息</h1>
-
-    <p class="disclaimer">以下信息仅为发票二维码所含信息，并不代表查验发票真伪的结果。</p>
-
-    <div class="info-list">
-        <div class="info-item">
-            <span class="info-label">发票代码</span>
-            <span class="info-value" id="invoiceCode"></span>
-        </div>
-        <div class="info-item">
-            <span class="info-label">发票号码</span>
-            <span class="info-value" id="invoiceNumber"></span>
-        </div>
-        <div class="info-item">
-            <span class="info-label">合计金额</span>
-            <span class="info-value" id="totalAmount"></span>
-        </div>
-        <div class="info-item">
-            <span class="info-label">开票日期</span>
-            <span class="info-value" id="invoiceDate"></span>
+    <div class="main-content">
+        <h1>发票信息</h1>
+        <p class="disclaimer">以下信息仅为发票二维码所含信息，并不代表查验发票真伪的结果。</p>
+        <div class="info-list">
+            <div class="info-item">
+                <span class="info-label">发票代码</span>
+                <span class="info-value" id="invoiceCode"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">发票号码</span>
+                <span class="info-value" id="invoiceNumber"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">合计金额</span>
+                <span class="info-value" id="totalAmount"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">开票日期</span>
+                <span class="info-value" id="invoiceDate"></span>
+            </div>
         </div>
     </div>
-
     <p class="footer-disclaimer">如需查验发票真伪，请通过税务机关提供的官方渠道进行查验。</p>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
@@ -94,6 +111,5 @@
             document.getElementById('invoiceDate').textContent = params.get('date') || '无';
         });
     </script>
-
 </body>
 </html> 
