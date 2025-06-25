@@ -66,9 +66,10 @@
         qrcodeContainer.innerHTML = '';
         new QRCode(qrcodeContainer, {
             text: url,
-            width: 64,
-            height: 64,
-            correctLevel : QRCode.CorrectLevel.H
+            width: 80,
+            height: 80,
+            correctLevel : QRCode.CorrectLevel.M
+            // 如需更疏松，可尝试更低内容或更低版本（部分库支持 version 参数）
         });
     };
     // 页面加载后自动点击生成一次
