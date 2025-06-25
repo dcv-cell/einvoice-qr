@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>发票信息</title>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f8f8f8; }
+        .header { background-color: #fff; padding: 15px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header h1 { margin: 0; font-size: 18px; }
+        .content { background-color: #fff; margin: 20px; padding: 20px; border-radius: 8px; }
+        .disclaimer { color: #888; font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
+        .info-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f0f0f0; font-size: 16px; }
+        .info-item:last-child { border-bottom: none; }
+        .info-label { color: #888; }
+        .info-value { color: #333; font-weight: 500; }
+        .footer-disclaimer { margin: 30px 20px; color: #aaa; font-size: 12px; text-align: center; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>发票信息</h1>
+    </div>
+
+    <div class="content">
+        <p class="disclaimer">以下信息仅为发票二维码所含信息，并不代表查验发票真伪的结果。</p>
+        <div class="info-item">
+            <span class="info-label">发票代码</span>
+            <span class="info-value" id="invoiceCode"></span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">发票号码</span>
+            <span class="info-value" id="invoiceNumber"></span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">合计金额</span>
+            <span class="info-value" id="totalAmount"></span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">开票日期</span>
+            <span class="info-value" id="invoiceDate"></span>
+        </div>
+    </div>
+
+    <p class="footer-disclaimer">如需查验发票真伪，请通过税务机关提供的官方渠道进行查验。</p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('invoiceCode').textContent = params.get('code') || '无';
+            document.getElementById('invoiceNumber').textContent = params.get('number') || '无';
+            const amount = params.get('amount');
+            if (amount) {
+                document.getElementById('totalAmount').textContent = `￥${parseFloat(amount).toFixed(2)}(含税)`;
+            } else {
+                document.getElementById('totalAmount').textContent = '无';
+            }
+            document.getElementById('invoiceDate').textContent = params.get('date') || '无';
+        });
+    </script>
+
+</body>
+</html> 

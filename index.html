@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>发票信息二维码生成器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 20px; background-color: #f8f8f8; color: #333; }
+        .container { max-width: 500px; margin: 40px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #1a1a1a; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 10px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+        button { width: 100%; padding: 12px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        #qrcode-container { margin-top: 20px; text-align: center; }
+        #qrcode { margin: 20px auto; padding: 10px; background: white; border: 1px solid #eee; display: inline-block; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>发票信息二维码生成器</h2>
+    <label for="invoiceCode">发票代码</label>
+    <input type="text" id="invoiceCode" value="021022400117">
+
+    <label for="invoiceNumber">发票号码</label>
+    <input type="text" id="invoiceNumber" value="00344399">
+
+    <label for="totalAmount">合计金额 (含税)</label>
+    <input type="text" id="totalAmount" value="91000.00">
+
+    <label for="invoiceDate">开票日期</label>
+    <input type="text" id="invoiceDate" placeholder="YYYY-MM-DD" value="2025-04-25">
+
+    <button id="genBtn">生成二维码</button>
+
+    <div id="qrcode-container">
+        <div id="qrcode"></div>
+    </div>
+</div>
+
+<script src="js/qrcode.min.js"></script>
+<script>
+    document.getElementById('genBtn').onclick = function() {
+        const invoiceCode = document.getElementById('invoiceCode').value.trim();
+        const invoiceNumber = document.getElementById('invoiceNumber').value.trim();
+        const totalAmount = document.getElementById('totalAmount').value.trim();
+        const invoiceDate = document.getElementById('invoiceDate').value.trim();
+
+        if (!invoiceCode || !invoiceNumber || !totalAmount || !invoiceDate) {
+            alert('请填写所有发票信息');
+            return;
+        }
+
+        const params = new URLSearchParams({
+            code: invoiceCode,
+            number: invoiceNumber,
+            amount: totalAmount,
+            date: invoiceDate.replace(/-/g, '.') // 转换为 YYYY.MM.DD 格式
+        });
+        
+        // 注意：这里使用相对路径。如果部署到服务器，需要换成完整的URL
+        const url = `invoice.html?${params.toString()}`;
+
+        const qrcodeContainer = document.getElementById('qrcode');
+        qrcodeContainer.innerHTML = '';
+        new QRCode(qrcodeContainer, {
+            text: url,
+            width: 256,
+            height: 256,
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    };
+    // 页面加载后自动点击生成一次
+    document.getElementById('genBtn').click();
+</script>
+</body>
+</html> 
