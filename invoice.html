@@ -5,26 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>发票信息</title>
     <style>
-        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f8f8f8; }
-        .header { background-color: #fff; padding: 15px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .header h1 { margin: 0; font-size: 18px; }
-        .content { background-color: #fff; margin: 20px; padding: 20px; border-radius: 8px; }
-        .disclaimer { color: #888; font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
-        .info-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f0f0f0; font-size: 16px; }
-        .info-item:last-child { border-bottom: none; }
-        .info-label { color: #888; }
-        .info-value { color: #333; font-weight: 500; }
-        .footer-disclaimer { margin: 30px 20px; color: #aaa; font-size: 12px; text-align: center; line-height: 1.6; }
+        body {
+            margin: 0;
+            padding: 0 16px; /* 左右留出边距 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            margin: 25px 0;
+            font-weight: 600;
+        }
+        .disclaimer {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 20px 0;
+        }
+        .info-list {
+            border-top: 1px solid #f0f0f0; /* 顶部加一条线 */
+            margin-top: 25px;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 16px;
+        }
+        .info-label {
+            color: #333; /* 标签颜色加深以匹配截图 */
+        }
+        .info-value {
+            color: #888; /* 数值颜色变浅以匹配截图 */
+            font-weight: 400;
+        }
+         .footer-disclaimer {
+            margin: 30px 0;
+            color: #aaa;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>发票信息</h1>
-    </div>
+    <h1>发票信息</h1>
 
-    <div class="content">
-        <p class="disclaimer">以下信息仅为发票二维码所含信息，并不代表查验发票真伪的结果。</p>
+    <p class="disclaimer">以下信息仅为发票二维码所含信息，并不代表查验发票真伪的结果。</p>
+
+    <div class="info-list">
         <div class="info-item">
             <span class="info-label">发票代码</span>
             <span class="info-value" id="invoiceCode"></span>
