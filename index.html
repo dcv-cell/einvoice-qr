@@ -58,8 +58,9 @@
             date: invoiceDate.replace(/-/g, '.') // 转换为 YYYY.MM.DD 格式
         });
         
-        // 注意：这里使用相对路径。如果部署到服务器，需要换成完整的URL
-        const url = `invoice.html?${params.toString()}`;
+        const currentUrl = window.location.href;
+        const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+        const url = `${baseUrl}invoice.html?${params.toString()}`;
 
         const qrcodeContainer = document.getElementById('qrcode');
         qrcodeContainer.innerHTML = '';
