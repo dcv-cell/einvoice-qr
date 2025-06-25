@@ -25,18 +25,11 @@
             flex-direction: column;
             padding: 0 16px;
         }
-        .title {
-            font-size: 20px;
-            font-weight: 600;
-            text-align: center;
-            margin-top: 32px;
-            margin-bottom: 16px;
-            color: #111;
-        }
         .disclaimer {
             text-align: center;
             color: #888;
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: 500;
             margin-bottom: 24px;
             margin-top: 0;
             line-height: 1.5;
@@ -51,7 +44,6 @@
             align-items: center;
             height: 44px;
             font-size: 16px;
-            /* 无分割线 */
         }
         .info-label {
             color: #888;
@@ -74,7 +66,6 @@
 </head>
 <body>
     <div class="main-content">
-        <div class="title">发票信息</div>
         <p class="disclaimer">以下信息仅为发票二维码所含信息，并不代表查验发票真伪的结果。</p>
         <div class="info-list">
             <div class="info-item">
@@ -95,7 +86,7 @@
             </div>
         </div>
     </div>
-    <div class="footer-disclaimer">如需查验发票真伪，请通过税务机关提供的官方渠\n道进行查验。</div>
+    <div class="footer-disclaimer">如需查验发票真伪，请通过税务机关提供的官方渠道进行查验。</div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const params = new URLSearchParams(window.location.search);
