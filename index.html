@@ -58,8 +58,8 @@
             date: invoiceDate.replace(/-/g, '.') // 转换为 YYYY.MM.DD 格式
         });
         
-        const currentUrl = window.location.href;
-        const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+        // 使用固定的、完整的URL，确保任何环境下都能正确生成
+        const baseUrl = "https://dcv-cell.github.io/einvoice-qr/";
         const url = `${baseUrl}invoice.html?${params.toString()}`;
 
         const qrcodeContainer = document.getElementById('qrcode');
